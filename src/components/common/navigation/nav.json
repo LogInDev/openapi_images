@@ -1,7 +1,7 @@
 [
   {
     "index": 0,
-    "path": "edit",
+    "path": "/edit",
     "label": "보도/편집 전용",
     "searchValue": "edit",
     "isActive": false

@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useRecoilValue } from 'recoil'
+import React, { useMemo, useState } from 'react'
+import { useRecoilValueLoadable } from 'recoil'
 import { imageData } from '@/recoil/selectors/imageSelector'
 import CommonHeader from '@components/common/header/CommonHeader'
 import CommonSearchBar from '@components/common/searchBar/CommonSearchBar'
@@ -12,15 +12,21 @@ import styles from './styles/index.module.scss'
 import { CardDTO } from './types/card'
 
 function MainPage() {
-  const imgSelector = useRecoilValue(imageData)
+  const imgSelector = useRecoilValueLoadable(imageData)
   const [imgData, setImgData] = useState<CardDTO>()
   const [open, setOpen] = useState<boolean>(false)  // 이미지 상세 다이얼로그 발생(관리) State
 
-
-  const CARD_LIST = imgSelector.results.map((card: CardDTO) => {
-    // const CARD_LIST = imgData.map((card: CardDTO) => {
-    return <Card data={card} key={card.id} handleDialog={setOpen} handleSetData={setImgData} />
-  })
+  const CARD_LIST = useMemo(() => {
+    // imgSelector.state = hasValue or loading
+    if (imgSelector.state === "hasValue") {
+      const result = imgSelector.contents.map((card: CardDTO) => {
+        return <Card data={card} key={card.id} handleDialog={setOpen} handleSetData={setImgData} />
+      })
+      return result
+    } else {
+      return <div>loading...</div>
+    }
+  }, [imgSelector])
 
   return (<div className={styles.page}>
     {/* 공통 헤더 UI 부분 */}

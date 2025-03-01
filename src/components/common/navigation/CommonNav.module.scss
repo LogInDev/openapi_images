@@ -20,5 +20,18 @@
         text-decoration: none;  // 추후에 div 태그를 React Router 속성 중 Link 태그로 바꿀 예정 - 링크에 생기는 밑줄 제거를 위해 none으로 설정
         color: main.$color-white-700;
         font-weight: 500;
+
+        &.inactive{
+            color: main.$color-white-700;
+            border-bottom: none;
+        }
+        &.active{
+            color: main.$color-black-900;
+            border-bottom: 2px solid main.$color-white-700;
+        }
+        &:hover{
+            color: main.$color-black-900;
+            font-weight: 600;
+        }
     }
 }
