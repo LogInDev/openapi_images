@@ -13,13 +13,13 @@ import { CardDTO } from './types/card'
 
 function MainPage() {
   const imgSelector = useRecoilValue(imageData)
-  const [imgData, setImgData] = useState<CardDTO[]>([])
+  const [imgData, setImgData] = useState<CardDTO>()
   const [open, setOpen] = useState<boolean>(false)  // 이미지 상세 다이얼로그 발생(관리) State
 
 
   const CARD_LIST = imgSelector.results.map((card: CardDTO) => {
     // const CARD_LIST = imgData.map((card: CardDTO) => {
-    return <Card data={card} key={card.id} handleDialog={setOpen} />
+    return <Card data={card} key={card.id} handleDialog={setOpen} handleSetData={setImgData} />
   })
 
   return (<div className={styles.page}>
@@ -45,7 +45,7 @@ function MainPage() {
     </div>
     {/* 공통 푸터 UI 부분 */}
     <CommonFooter />
-    {open && <DetailDialog />}
+    {open && <DetailDialog data={imgData} handleDialog={setOpen} />}
   </div>)
 }
 
