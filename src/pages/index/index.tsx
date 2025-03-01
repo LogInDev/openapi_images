@@ -19,7 +19,7 @@ function MainPage() {
   const CARD_LIST = useMemo(() => {
     // imgSelector.state = hasValue or loading
     if (imgSelector.state === "hasValue") {
-      const result = imgSelector.contents.map((card: CardDTO) => {
+      const result = imgSelector.contents.results.map((card: CardDTO) => {
         return <Card data={card} key={card.id} handleDialog={setOpen} handleSetData={setImgData} />
       })
       return result
