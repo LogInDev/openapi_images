@@ -20,9 +20,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
-    "noImplicitAny": false,
-    "strictNullChecks": false
+    "noUncheckedSideEffectImports": true
   },
   "include": ["src"]
 }
