@@ -1,21 +1,40 @@
 {
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*":["src/*"],
-      "@assets/*":["src/assets/*"],
-      "@components*":["src/components/*"],
-      "@pages/*":["src/pages/*"],
-      "@types/*":["src/types/*"],
-      "@recoil/*":["src/recoil/*"],
-      "@apis/*":["src/apis/*"],
+    "compilerOptions": {
+        "target": "ES2020",
+        "useDefineForClassFields": true,
+        "lib": ["ES2020", "DOM", "DOM.Iterable"],
+        "module": "ESNext",
+        "skipLibCheck": true,
+
+        /* Bundler mode */
+        // "moduleResolution": "bundler",
+        "moduleResolution": "node",
+        "allowImportingTsExtensions": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        // "jsx": "react-jsx",
+        "jsx": "react",
+
+        /* Linting */
+        "strict": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noFallthroughCasesInSwitch": true,
+
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["src/*"],
+            "@assets/*": ["src/assets/*"],
+            "@components/*": ["src/components/*"],
+            "@pages/*": ["src/pages/*"],
+            "@types/*": ["src/types/*"],
+            "@recoil/*": ["src/recoil/*"],
+            "@apis/*": ["src/apis/*"]
+        },
+        "noImplicitAny": false,
+        "strictNullChecks": false,
     },
-    "noImplicitAny": false,
-    "strictNullChecks": false
-  },
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ],
+    "include": ["src"],
+    "references": [{ "path": "./tsconfig.node.json" }]
 }

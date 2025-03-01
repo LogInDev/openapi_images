@@ -52,7 +52,4 @@ interface Url {
     thumb: string
 }
 
-export interface UnsplashResponse {
-  results: CardDTO[];
-}
 

@@ -20,9 +20,10 @@ export const imageData = selector({
             );
             console.log(res);
 
-            return res;
+            return res.data;
         } catch (error) {
             console.log(error);
+      return { results: [] }; // 에러 발생 시 빈 배열 반환
         }
     },
 })

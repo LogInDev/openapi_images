@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { imageData } from '@/recoil/selectors/imageSelector'
 import CommonHeader from '@components/common/header/CommonHeader'
@@ -6,16 +6,20 @@ import CommonSearchBar from '@components/common/searchBar/CommonSearchBar'
 import CommonNav from '@components/common/navigation/CommonNav'
 import CommonFooter from '@components/common/footer/CommonFooter'
 import Card from './components/Card'
+import DetailDialog from '@components/common/dialog/DetailDialog'
 // CSS
 import styles from './styles/index.module.scss'
 import { CardDTO } from './types/card'
 
-function index() {
+function MainPage() {
   const imgSelector = useRecoilValue(imageData)
   const [imgData, setImgData] = useState<CardDTO[]>([])
+  const [open, setOpen] = useState<boolean>(false)  // 이미지 상세 다이얼로그 발생(관리) State
 
-  const CARD_LIST = imgSelector.data.results.map((card: CardDTO) => {
-    return <Card data={card} key={card.id} />
+
+  const CARD_LIST = imgSelector.results.map((card: CardDTO) => {
+    // const CARD_LIST = imgData.map((card: CardDTO) => {
+    return <Card data={card} key={card.id} handleDialog={setOpen} />
   })
 
   return (<div className={styles.page}>
@@ -41,7 +45,8 @@ function index() {
     </div>
     {/* 공통 푸터 UI 부분 */}
     <CommonFooter />
+    {open && <DetailDialog />}
   </div>)
 }
 
-export default index
+export default MainPage
