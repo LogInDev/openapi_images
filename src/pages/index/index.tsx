@@ -14,7 +14,7 @@ function index() {
   const imgSelector = useRecoilValue(imageData)
   const [imgData, setImgData] = useState<CardDTO[]>([])
 
-  const CARD_LIST = imgSelector.map((card: CardDTO) => {
+  const CARD_LIST = imgSelector.data.results.map((card: CardDTO) => {
     return <Card data={card} key={card.id} />
   })
 
