@@ -24,7 +24,7 @@ const navLinks = navigation.map((item:Navigation) => {
 })
 
   return (
-    <div className={styles.navigation}>{navLinks}</div>
+    <nav className={styles.navigation}>{navLinks}</nav>
   )
 }
 
