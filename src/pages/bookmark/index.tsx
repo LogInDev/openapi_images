@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Card from './components/Card'
 import { CardDTO } from '../index/types/card'
 
-function index() {
+function BookmarkPage() {
     const [data, setData] = useState([])
     const getData = () => {
         const getLocalStorage = JSON.parse(localStorage.getItem('bookmark'))
@@ -22,12 +22,17 @@ function index() {
             {/* 공통 헤더 UI 부분 */}
             <CommonHeader />
             <main className={styles.page__contents}>
-                {data.map((item: CardDTO) => {
-                    return <Card prop={item} key={item.id} />
-                })}
+                {/* 만약 데이터가 없을 때 */}
+                {data.length == 0 ? (
+                    <div className={styles.page__contents__noData}>조회 가능한 데이터가 없습니다.</div>
+                ) : (
+                    data.map((item: CardDTO) => {
+                        return <Card prop={item} key={item.id} />
+                    })
+                )}
             </main>
         </div>
     )
 }
 
-export default index
+export default BookmarkPage

@@ -75,13 +75,13 @@ function CommonFooter() {
           res[step].map((item: number, index: number) => {
             if (item < 11) {
               return (
-                <button className={index === page - 1 ? `${styles.pagination__button} ${styles.active}` : `${styles.pagination__button} ${styles.inactive}`} key={page} onClick={() => moveToPage(item)}>
+                <button className={index === page - 1 ? `${styles.pagination__button} ${styles.active}` : `${styles.pagination__button} ${styles.inactive}`} key={item} onClick={() => moveToPage(item)}>
                   {item}
                 </button>
               )
             } else {
               return (
-                <button className={index === page - 1 - step * 10 ? `${styles.pagination__button} ${styles.active}` : `${styles.pagination__button} ${styles.inactive}`} key={page} onClick={() => moveToPage(item)}>
+                <button className={index === page - 1 - step * 10 ? `${styles.pagination__button} ${styles.active}` : `${styles.pagination__button} ${styles.inactive}`} key={item} onClick={() => moveToPage(item)}>
                   {item}
                 </button>
               )

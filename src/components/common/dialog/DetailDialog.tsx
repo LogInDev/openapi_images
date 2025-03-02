@@ -48,10 +48,20 @@ function DetailDialog({ data, handleDialog }: Props) {
         if (getLocalStorage && getLocalStorage.findIndex((item: CardDTO) => item.id == data.id) > -1) {
             setBookmark(true)
         } else if (!getLocalStorage) return
+
+        // ESC 키를 눌렀을 때, 다이얼로그 창 닫기
+        const escKeyDownCloseDialog = (event: any) => {
+            if (event.key == 'Escape') {
+                closeDialog()
+            }
+        }
+        // 위에 만들어놓은 escKeyDownCloseDialog를 키다운 했을 때, 이벤트로 등록 및 해지
+        window.addEventListener('keydown', escKeyDownCloseDialog)
+        return () => document.removeEventListener('keydown', escKeyDownCloseDialog)
     }, [])
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} onClick={closeDialog}>
             <div className={styles.container__dialog}>
                 <div className={styles.container__dialog__header}>
                     <div className={styles.close}>
